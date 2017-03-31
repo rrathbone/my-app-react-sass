@@ -1,0 +1,369 @@
+@import "../../app.scss";
+
+$base-path: '/images/';
+$file-name: 'migo_banner';
+$extension: 'jpg';
+$file-path: $base-path + $file-name + '.' + $extension;
+
+/*---------- Banner section ----------*/
+#banner-section {
+	background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url($file-path) center;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: hidden;
+	-webkit-background-size: cover;
+	background-size: cover;
+  padding-top: 10.5em;
+
+	#banner-logo {
+		width: 50em;
+	}
+
+	#h1-hp {
+	  font-size: 3.6rem;
+	  color: #fff;
+	  margin-top: 0.8em;
+	}
+
+	#banner-content > p {
+		font-size: 2.2rem;
+		color: #fff;
+		margin-top: 0;
+		line-height: 2;
+	  font-weight: bold;
+	}
+
+	.beta-signup-btn {
+		@include button(17em, 3em, $migo-blue, #fff, 1.7em 1em 0.5em 0);
+	}
+
+	.banner-img {
+		position: relative;
+
+		.banner img {
+			position: absolute;
+			margin-top: 7.5em;
+		}
+
+		#banner-img {
+			height: 40em;
+			margin-left: 4.3em;
+		}
+	}
+}
+
+$section-padding: 6.7em;
+$header-margin-bottom: 0.75em;
+$header-font-size: 3em;
+
+/*---------- How it works section ----------*/
+#how-padding {
+	padding-top: $section-padding;
+	padding-bottom: $section-padding;
+
+	.header {
+		text-align: center;
+		width: ($full-width-height / 5) * 4;
+		margin: 0 auto;
+
+		#how-header {
+			margin-bottom: $header-margin-bottom;
+			font-size: $header-font-size;
+		}
+
+		.how-p {
+			margin-bottom: 2em;
+		}
+	}
+
+	.media-body {
+		padding-left: 2em;
+		width: 80%;
+	}
+
+	#step-1-des, #step-2-des, #step-3-des, #step-4-des {
+		width: 90%;
+	}
+
+	#step-2-header, #step-3-header, #step-4-header, #step-2-icon, #step-3-icon, #step-4-icon {
+		margin-top: 1em;
+	}
+
+	.step-images {
+	  width: 84%;
+	  float: right;
+	  margin-right: 4%;
+	}
+}
+
+/*---------- Call to action section ----------*/
+.parallax-back {
+  background: url($file-path) no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: auto;
+
+	.opcaity {
+	  background: rgba(0,0,0,0.69);
+	}
+
+	#call-to-action {
+	  text-align: center;
+
+		.parallax-signup-btn {
+			@include button(17em, 3em, $migo-blue, #fff, 1.7em 1em 0.5em 0);
+			margin: 3em 0 3em 0;
+		}
+	}
+
+}
+
+/*---------- Partners section ----------*/
+#partners-section {
+	padding: $section-padding;
+
+	#partner-container {
+  	padding-left: 0;
+	}
+
+	.partner-info {
+		width: 90%;
+	}
+
+	#curb-body, #flywheel-body, #syc-body, #zoro-body {
+		padding-left: 1em;
+	}
+
+	#car2go-body, #lyft-body {
+		padding-left: 0.8em;
+	}
+
+	#lyft, #syc, #zoro {
+	  margin-top: 4em;
+	}
+
+	#curb_logo, #yellowcab_logo {
+	  width: 7em;
+	}
+
+	#lyft_logo, #car2go_logo {
+		width: 7.5em;
+	}
+
+	#flywheel_logo {
+	  width: 6.3em;
+	  margin-right: 0.8em;
+	}
+
+	#car2go_logo {
+	  margin-right: 0.3em;
+	}
+
+	#curb_Logo,  {
+	  margin-right: 1em;
+	}
+
+	#zoro_logo {
+  	width: 6.8em;
+	}
+}
+
+/*---------- About section ----------*/
+#about-padding {
+	padding: $section-padding;
+}
+
+/*---------- Features & News section ----------*/
+#features-news-padding {
+	padding-top: $section-padding;
+	padding-bottom: $section-padding;
+
+	.features-news-list {
+	  padding-left: 4%;
+	  font-size: 1.9rem;
+	  line-height: 1.8em;
+	}
+
+	.news-item {
+	  cursor: pointer;
+	  margin: 0 1% 1% 0;
+	  overflow: hidden;
+	  position: relative;
+	  width: 60%;
+	}
+
+	.nf-list i {
+		margin-right: 1em;
+	}
+
+	@mixin text-hover($color) {
+	  &:hover {
+      color: $color;
+	  }
+	}
+
+	.news-links {
+		@include text-hover($migo-green);
+	}
+}
+
+/*---------- Contact section ----------*/
+
+#contact-padding {
+	$border: 0.05em solid $migo-green;
+	$error-color: #d03e3e;
+
+	padding-top: $section-padding;
+	padding-bottom: $section-padding;
+
+	.row.contact {
+		width: ($full-width-height / 5) * 3.5;
+		margin: auto;
+
+		.contact-caption {
+			color: #fff;
+			background: $migo-blue;
+			border-radius: 0.4rem;
+		}
+	}
+
+	@mixin form-input($height) {
+		height: $height;
+		width: $full-width-height;
+		padding: 0.8em;
+		color: #363636;
+		border-radius: 0.4rem;
+		font-size: 1.6rem;
+		border: 0;
+		margin-bottom: 0.7em;
+	}
+
+	.contact-form {
+	  width: ($full-width-height / 5) * 4;
+	  margin: auto;
+
+		.contact-form h3 {
+			padding-left: 0;
+			font-size: 2em;
+			border-bottom: $border;
+			padding-bottom: 0.5em;
+			margin-bottom: 0;
+		}
+	}
+
+	.form {
+		padding-top: 1em;
+	}
+
+	.contact-form input {
+		@include form-input(3.5em);
+	}
+
+	.contact-form textarea {
+		@include form-input(8em);
+	}
+
+	.contact-form button.submit-btn {
+		@include button(11em, 2.5em, #fff, $migo-blue, 0 0 1.5em 0);
+		padding: 0;
+		float: right;
+	}
+
+	.inputError {
+	  background-color: #f4bfbf;
+	  border: 1px solid $error-color;
+	  color: $error-color;
+	}
+
+	// .inputError::-webkit-input-placeholder {
+	//   color: $error-color;
+	// }
+
+	label {
+	  float: left;
+	}
+
+	.label {
+	  font-size: 1.4rem;
+	}
+
+	#warning-icon {
+	  color: #FFAA00;
+	}
+
+	#thank-you {
+	  display: -webkit-inline-box;
+	  float: left;
+	  font-size: 1.8rem;
+	  width: 58%;
+	  text-align: center;
+	}
+}
+
+/*---------- Shared content ----------*/
+@mixin underline($position) {
+	position: $position;
+}
+
+@mixin underline-position {
+	content: "";
+	width: 40%;
+	height: 0.05em;
+	background-color: #777;
+	top: 50%;
+}
+
+.underline {
+	@include underline(relative);
+
+	text-align: center;
+	font-size: 1.7rem;
+	max-width: 40%;
+	margin: auto;
+	margin-bottom: 3.5em;
+	color: #0099FF;
+}
+
+.underline:before {
+	@include underline(absolute);
+	@include underline-position;
+
+	left: 0;
+}
+
+.underline:after {
+	@include underline(absolute);
+	@include underline-position;
+
+	right: 0;
+}
+
+.fa-mobile-phone:before, .fa-mobile:before, .fa-users:before, .fa-map-marker:before,
+.fa-handshake-o:before, .fa-newspaper-o:before, .fa-question-circle-o, .fa-search,
+.fa-hand-paper-o:before, .fa-taxi:before {
+  color: $migo-blue;
+  font-size: 1.3em;
+}
+
+.fa-mobile-phone:before, .fa-mobile:before {
+  color: $migo-blue;
+  font-size: 1.5em;
+}
+
+.media.service-box .pull-left > i {
+  font-size: 2rem;
+  height: 3.3em;
+  line-height: 3.3em;
+  text-align: center;
+  width: 3.3em;
+	border: 1px solid $migo-blue;
+  border-radius: 100%;
+  color: $migo-blue;
+  box-shadow: inset 0 0 0 1px #d7d7d7;
+  -webkit-box-shadow: inset 0 0 0 1px #d7d7d7;
+  transition: background-color 400ms, background-color 400ms;
+  position: relative;
+}

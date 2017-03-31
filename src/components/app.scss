@@ -1,0 +1,191 @@
+@mixin button($width, $height, $background, $color, $margin) {
+	width: $width;
+	height: $height;
+	background: $background;
+	color: $color;
+	margin: $margin;
+
+	text-transform: uppercase;
+	font-size: 2rem;
+	border-radius: 0.4rem;
+	border: 0;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+}
+
+$full-width-height: 100%;
+$migo-blue: #3d85c6;
+$migo-green: #91c84a;
+$all-text: 1.9rem;
+$p-line-height: 1.8em;
+
+p, .nf-list {
+	font-size: $all-text;
+	line-height: $p-line-height;
+}
+
+li {
+	list-style: none;
+}
+
+// Navbar
+header {
+	position: fixed;
+	width: $full-width-height;
+	z-index: 999;
+	height: 5px;
+
+	.navbar {
+		background: $migo-green;
+		width: $full-width-height;
+		z-index: 999;
+		border: none;
+		position: relative;
+		max-height: 4.5em;
+		margin-bottom: 0;
+	}
+
+	.navbar-brand {
+		padding: 0.35em 0;
+	}
+
+	#nav-logo-white {
+		width: 7em;
+	}
+
+	.nav-list {
+		float: right;
+		display: flex;
+		margin: 0;
+		padding: 0;
+		height: 4.5em;
+	}
+
+	.nav-links {
+		height: $full-width-height;
+		padding-top: 1.35em;
+	}
+
+	@mixin on-event($color, $text-decoration: none) {
+		&:hover,
+		&:active,
+		&:focus {
+			color: $color;
+			text-decoration: $text-decoration;
+			@content;
+		}
+	}
+
+	.nav-links > a {
+		font-size: 1.6rem;
+		text-transform: capitalize;
+		padding: 0.5em 0;
+		margin: 0 0.9em;
+		font-weight: 600;
+		text-decoration: none;
+		color: #fff;
+
+		@include on-event($migo-blue);
+	}
+
+	#signup-li {
+		background: $migo-blue;
+
+		a {
+			@include on-event($migo-green);
+		}
+	}
+}
+
+// Main
+.container {
+  padding-right: 0.9375em;
+  padding-left: 0.9375em;
+  margin-right: auto;
+  margin-left: auto
+}
+
+// Footer
+footer {
+	@mixin on-event($color, $text-decoration: none) {
+		&:hover,
+		&:active,
+		&:focus {
+			color: $color;
+			text-decoration: $text-decoration;
+			@content;
+		}
+	}
+
+	background: #4b4b4a;
+	color: #fff;
+
+	#container-footer {
+		height: 15em;
+	}
+
+	#footer-btn {
+		padding-left: 0;
+	}
+
+	#footer-hiring-btn {
+		@include button(13em, 3em, #fff, $migo-blue, 2.7em 0 3.125em 4em);
+	}
+
+	#migo-links {
+		text-align: center;
+	  margin-top: 2.4em;
+	}
+
+	#migo-links > h4 {
+		font-size: 1.85rem;
+		padding: 0.2em;
+	}
+
+	#contact, #privacy, #tos {
+		a {
+			color: #fff;
+			font-weight: normal;
+
+			@include on-event($migo-green);
+		}
+	}
+
+	#social-media {
+		text-align: center;
+		margin-top: 3.7em;
+	}
+
+	.social-media-icons {
+		color: $migo-blue;
+		background: #fff;
+		font-size: 2.55em;
+		padding: 0.3em;
+		min-width: 1.6em;
+	  border-radius: 0.1em;
+		margin-right: 0.2em;
+		margin-left: 0.2em;
+	}
+
+	#privacy {
+		margin-top: 0.8em;
+	}
+
+	#linkedin-sm {
+		margin-left: 3.5em;
+	}
+
+	#copyright.row {
+		margin-bottom: 0.5em;
+	}
+
+	#copyright {
+		margin-bottom: 1em;
+		width: 89%;
+		margin: 0 auto;
+	}
+
+	#copyright > p {
+		font-size: 1.5rem;
+	}
+}
