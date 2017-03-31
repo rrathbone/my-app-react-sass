@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 
-const EmailInput = ({ name, label, onChange, placeholder, value, error }) => {
+const TextArea = ({ name, label, onChange, placeholder, value, error }) => {
   let wrapperClass = 'form-group';
 
   return (
     <div className={wrapperClass}>
-      {error ? <label id="error-label" htmlFor={name}>{label}<i id="warning-icon" className="fa fa-exclamation-triangle" aria-hidden="true"></i> {error}</label> : <label htmlFor={name}>{label}</label>}
+      {error ? <label id="error-label" htmlFor={name}>{label}<i id="warning-icon-message" className="fa fa-exclamation-triangle" aria-hidden="true"></i>{error}</label> : <label htmlFor={name}>{label}</label>}
       {error ?
         <div className="field">
-          <input
-            type="email"
+          <textarea
+            type="text"
             name={name}
             className="form-control error"
             placeholder={placeholder}
@@ -19,8 +19,8 @@ const EmailInput = ({ name, label, onChange, placeholder, value, error }) => {
         </div>
         :
         <div className="field">
-          <input
-            type="email"
+          <textarea
+            type="text"
             name={name}
             className="form-control"
             placeholder={placeholder}
@@ -33,7 +33,7 @@ const EmailInput = ({ name, label, onChange, placeholder, value, error }) => {
   );
 };
 
-EmailInput.propTypes = {
+TextArea.propTypes = {
   error: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -41,4 +41,4 @@ EmailInput.propTypes = {
   value: PropTypes.string
 };
 
-export default EmailInput;
+export default TextArea;

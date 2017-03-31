@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
+// import { Button } from 'react-bootstrap';
 
-// import EmailInput from '../../common/EmailInput';
-// import TextInput from '../../common/TextInput';
+import EmailInput from '../../common/EmailInput';
+import TextArea from '../../common/TextArea';
+import TextInput from '../../common/TextInput';
 
-const ContactForm = ({ handleChange, handleSubmit, email, message, name }) => {
+const ContactForm = ({ email, errors, formComplete, handleChange, handleClick, handleSubmit, message, name, sending }) => {
   return (
     <section id="contact-section">
       <div className="parallax-back" data-stellar-background-ratio="0.5">
@@ -21,13 +23,8 @@ const ContactForm = ({ handleChange, handleSubmit, email, message, name }) => {
                     <h3>Leave us a message</h3>
 
                     <form className="form" id="contactForm" onSubmit={handleSubmit}>
-                      <label htmlFor="name">Name:
-                        <span className="label hide" id="nameLabelErr">
-                          <i id="warning-icon" className="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                          Please enter your name
-                        </span></label>
-
-                        <input
+                      <label htmlFor="name">Name:</label>
+                        <TextInput
                           type="text"
                           className="valid"
                           id="nameInput"
@@ -35,14 +32,11 @@ const ContactForm = ({ handleChange, handleSubmit, email, message, name }) => {
                           placeholder="Name"
                           value={name}
                           onChange={handleChange}
+                          error={errors.name}
                         />
 
-                        <label htmlFor="name">Email:
-                          <span className="label hide" id="emailLabelErr">
-                            <i id="warning-icon" className="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            Please enter a valid email</span>
-                          </label>
-                        <input
+                      <label htmlFor="name">Email:</label>
+                        <EmailInput
                           type="email"
                           className="valid"
                           id="emailInput"
@@ -50,28 +44,29 @@ const ContactForm = ({ handleChange, handleSubmit, email, message, name }) => {
                           placeholder="Email"
                           value={email}
                           onChange={handleChange}
+                          error={errors.email}
                         />
 
-                        <label htmlFor="name">Message:
-                          <span className="label hide" id="messageLabelErr">
-                            <i id="warning-icon" className="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            Please enter a message
-                          </span></label>
-
-                        <textarea
+                      <label htmlFor="name">Message:</label>
+                        <TextArea
                           type="text"
                           className="valid"
-                          id="messageInput"
                           name="message"
                           cols="30"
                           rows="10"
                           placeholder="Message"
                           value={email}
                           onChange={handleChange}
+                          error={errors.message}
                         />
 
-                      <button className="submit-btn" id="contact-btn" type="submit" value="Send Message">Send Message</button>
-                      <button className="submit-btn hide" id="contact-btn-complete" type="submit" value="Message Sent!">Message Sent!</button>
+                        <input
+                          type="submit"
+                          disabled={sending}
+                          value={sending ? 'Message Sent!' : 'Send'}
+                          className="submit-btn"
+                          onClick={handleClick}
+                        />
                     </form>
 
                   </div>
@@ -87,76 +82,15 @@ const ContactForm = ({ handleChange, handleSubmit, email, message, name }) => {
 };
 
 ContactForm.propTypes = {
-  handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func,
   email: PropTypes.string,
+  errors: React.PropTypes.object,
+  formComplete: PropTypes.bool,
+  handleChange: PropTypes.func,
+  handleClick: PropTypes.func,
+  handleSubmit: PropTypes.func,
   message: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
+  sending: React.PropTypes.bool
 }
 
 export default ContactForm;
-
-// <form onSubmit={handleSubmit}>
-// <label>
-//   Name:
-//   <input type="text" value={nameInput} onChange={handleChange} />
-// </label>
-// <input type="submit" value="Submit" />
-// </form>
-
-// <div className="parallax-back" data-stellar-background-ratio="0.5">
-//   <div className="opcaity">
-//     <div className="contact section-padding" id="contact-padding">
-//       <div className="container">
-//         <div className="row contact">
-//           <div className="contact-caption clearfix">
-//
-//             <div className="header contact">
-//               <h1 className="section-title text-center" id="contact-header">Contact Us</h1>
-//             </div>
-//
-//             <div className="col-md-offset-1 contact-form">
-//               <h3>Leave us a message</h3>
-//
-//               <form className="form" action="" name="registration" id="contactForm" onSubmit={this.handleSubmit}>
-//                 <label htmlFor="name">Name:
-//                   <span className="label hide" id="nameLabelErr">
-//                     <i id="warning-icon" className="fa fa-exclamation-triangle" aria-hidden="true"></i>
-//                     Please enter your name
-//                   </span></label>
-//                 <input
-//                   name="nameInput"
-//                   className="valid"
-//                   type="text"
-//                   id="nameInput"
-//                   placeholder="Name">
-//                   value={this.state.value}
-//                   onChange={this.handleChange}
-//                 </input>
-//
-//                 <label htmlFor="name">Email:
-//                   <span className="label hide" id="emailLabelErr">
-//                     <i id="warning-icon" className="fa fa-exclamation-triangle" aria-hidden="true"></i>
-//                     Please enter a valid email</span>
-//                   </label>
-//                 <input className="valid" type="email" name="emailInput" id="emailInput" placeholder="Email"></input>
-//
-//                 <label htmlFor="name">Message:
-//                   <span className="label hide" id="messageLabelErr">
-//                     <i id="warning-icon" className="fa fa-exclamation-triangle" aria-hidden="true"></i>
-//                     Please enter a message
-//                   </span></label>
-//                 <textarea className="valid" type="text" name="messageInput" id="messageInput" cols="30" rows="10" placeholder="Message"></textarea>
-//
-//                 <button className="submit-btn" id="contact-btn" type="submit" value="Send Message">Send Message</button>
-//                 <button className="submit-btn hide" id="contact-btn-complete" type="submit" value="Message Sent!">Message Sent!</button>
-//               </form>
-//
-//             </div>
-//
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// </div>

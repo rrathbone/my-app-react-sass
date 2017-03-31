@@ -211,7 +211,6 @@ $header-font-size: 3em;
 }
 
 /*---------- Contact section ----------*/
-
 #contact-padding {
 	$border: 0.05em solid $migo-green;
 	$error-color: #d03e3e;
@@ -266,21 +265,11 @@ $header-font-size: 3em;
 		@include form-input(8em);
 	}
 
-	.contact-form button.submit-btn {
+	.contact-form input.submit-btn {
 		@include button(11em, 2.5em, #fff, $migo-blue, 0 0 1.5em 0);
 		padding: 0;
 		float: right;
 	}
-
-	.inputError {
-	  background-color: #f4bfbf;
-	  border: 1px solid $error-color;
-	  color: $error-color;
-	}
-
-	// .inputError::-webkit-input-placeholder {
-	//   color: $error-color;
-	// }
 
 	label {
 	  float: left;
@@ -290,8 +279,23 @@ $header-font-size: 3em;
 	  font-size: 1.4rem;
 	}
 
+	#error-label {
+		padding-left: 1em;
+	}
+
+			.form-control.error {
+		border: 1px solid $error-color;
+		background: lighten($error-color, 35%);
+	}
+
 	#warning-icon {
 	  color: #FFAA00;
+		padding-right: 0.3em;
+	}
+
+	#warning-icon-message {
+		color: #FFAA00;
+		padding-right: 0.5em;
 	}
 
 	#thank-you {
