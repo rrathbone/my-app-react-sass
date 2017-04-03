@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
 
-const Footer = () => {
+const Footer = ({listenScrollEvent}) => {
   return (
     <footer>
       <Grid>

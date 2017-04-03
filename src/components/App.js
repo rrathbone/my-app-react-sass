@@ -10,13 +10,10 @@ class App extends React.Component {
       <main>
         <ReactNavbar />
         <HomePage />
-        <Footer />
+        <Footer  />
       </main>
     );
   }
 }
-
-App.propTypes = {
-};
 
 export default App;

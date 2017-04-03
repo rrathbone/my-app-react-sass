@@ -7,11 +7,11 @@ import Banner from './Banner';
 import CallToAction from './CallToAction';
 import Contact from './contact/Contact';
 import FeaturesNews from './FeaturesNews';
-import HowItWorks from './HowItWorks';
+import HowItWorks from './how/HowItWorks';
+// import HowItWorks from './how/HowItWorksStateless';
 import Partners from './Partners';
 
 class HomePage extends React.Component {
-
   render() {
     return (
       <section id="homepage">

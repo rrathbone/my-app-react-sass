@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-// import { Button } from 'react-bootstrap';
 
 import EmailInput from '../../common/EmailInput';
 import TextArea from '../../common/TextArea';

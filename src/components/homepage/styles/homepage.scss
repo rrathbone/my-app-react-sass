@@ -37,7 +37,7 @@ $file-path: $base-path + $file-name + '.' + $extension;
 	}
 
 	.beta-signup-btn {
-		@include button(17em, 3em, $migo-blue, #fff, 1.7em 1em 0.5em 0);
+		@include button(17em, 3em, $migo-blue, #fff, 1.7em 1em 7em 0);
 	}
 
 	.banner-img {
@@ -118,7 +118,6 @@ $header-font-size: 3em;
 			margin: 3em 0 3em 0;
 		}
 	}
-
 }
 
 /*---------- Partners section ----------*/
@@ -283,7 +282,7 @@ $header-font-size: 3em;
 		padding-left: 1em;
 	}
 
-			.form-control.error {
+	.form-control.error {
 		border: 1px solid $error-color;
 		background: lighten($error-color, 35%);
 	}
@@ -357,7 +356,7 @@ $header-font-size: 3em;
   font-size: 1.5em;
 }
 
-.media.service-box .pull-left > i {
+.media.service-box .pull-left > i, .media.service-box .pull-left > .icons > i {
   font-size: 2rem;
   height: 3.3em;
   line-height: 3.3em;

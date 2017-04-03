@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid, Navbar } from 'react-bootstrap';
-// import { Link } from 'react-router';
 
 const ReactNavbar = () => {
   return (
@@ -27,18 +26,3 @@ const ReactNavbar = () => {
 };
 
 export default ReactNavbar;
-
-// <a href="/home.html" className="hide" id="reveal-logo"><p className="img-responsive logo" id="nav-logo-white">migo</p></a>
-
-
-// <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-//   <span className="sr-only">Toggle navigation</span>
-//   <span className="icon-bar"></span>
-//
-//   <span className="icon-bar"></span>
-//   <span className="icon-bar"></span>
-// </button>
-
-// <li className="nav-links" id="signup-li"><a href="#">Sign Up</a></li>
-// <li className="nav-links" id="about-li"><a href="#">About</a></li>
-// <li className="nav-links" id="contact-li"><a href="#">Contact</a></li>
