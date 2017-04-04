@@ -12,6 +12,20 @@ class HowItWorks extends React.Component {
       this.state = {
         active: null,
         hovering: false,
+        iconId: '',
+        icons: [{
+          className: 'fa fa-search',
+          id: 'step-1-icon'
+        }, {
+          className: 'fa fa-map-marker',
+          id: 'step-2-icon'
+        }, {
+          className: 'fa fa-hand-paper-o',
+          id: 'step-3-icon'
+        }, {
+          className: 'fa fa-taxi',
+          id: 'step-4-icon'
+        }],
         imgId: '',
         screens: [{
           img: '/images/screen1.png',
@@ -43,13 +57,16 @@ class HowItWorks extends React.Component {
       this.toggle = this.toggle.bind(this);
    };
 
-   getImageInfo(event) {
+   getImageInfo(screenId) {
      this.setState({
-       imgId: event
+       imgId: screenId,
+       iconId: screenId
      })
-     if(this.state.imgId === 'step4-img') {
-       alert('image 4')
-     }
+
+     console.log(this.state.imgId);
+    //  if(this.state.imgId === 'step4-img') {
+    //    console.log('image 4')
+    //  }
    }
 
   onHoverOn(position){
@@ -98,12 +115,11 @@ class HowItWorks extends React.Component {
     // }.bind(this), 7000);
     // const screens = this.state.screens;
 
-
-
     return (
       <section id="how-animations">
         <HowAnimations
           getImageInfo={this.getImageInfo}
+          icons={this.state.icons}
           onHoverOn={this.onHoverOn}
           onHoverOff={this.onHoverOff}
           migoGreen={this.migoGreen}

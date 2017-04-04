@@ -2,27 +2,7 @@ import React, { PropTypes } from 'react';
 import { Grid } from 'react-bootstrap';
 
 
-const HowAnimations = ({ getImageInfo, migoGreen, onHoverOn, onHoverOff, screens, toggle }) => {
-  // const screens = [{
-  //   img: '/images/screen1.png',
-  //   alt: 'Search for ride share options',
-  //   className: 'img-responsive step-images'
-  // }, {
-  //   img: '/images/screen2.png',
-  //   alt: 'Compare and discover ride sharing options',
-  //   className: 'img-responsive step-images hide'
-  // }, {
-  //   img: '/images/screen3.png',
-  //   alt: 'Hail the ride share service of your choice',
-  //   className: 'img-responsive step-images hide'
-  // }, {
-  //   img: '/images/screen4.png',
-  //   alt: 'Travel to your destination',
-  //   className: 'img-responsive step-images hide'
-  // }];
-
-
-
+const HowAnimations = ({ getImageInfo, icons, migoGreen, onHoverOn, onHoverOff, screens, toggle }) => {
   return (
     <section id="how-it-works-section">
       <Grid>
@@ -52,7 +32,9 @@ const HowAnimations = ({ getImageInfo, migoGreen, onHoverOn, onHoverOff, screens
 
                 <div className="media service-box" id="step-1" onClick={() => {toggle(0)}} onMouseEnter={() => {onHoverOn(0)}} onMouseLeave={() => {onHoverOff(0)}}>
                   <div className="pull-left">
-                    <i className="fa fa-search" id="step-1-icon" style={{background: migoGreen(0)}}></i>
+                    {icons.map((icon, index) => (
+                      <i className={icon.className} onClick={() => {getImageInfo(icon.id)}} key={index} id={icon.id} style={{background: migoGreen(0)}}></i>
+                    ))}
                   </div>
                   <div className="media-body how">
                     <h3 className="media-heading" id="step-1-header">Step 1: Search</h3>
@@ -100,6 +82,7 @@ const HowAnimations = ({ getImageInfo, migoGreen, onHoverOn, onHoverOff, screens
 };
 
 HowAnimations.propTypes = {
+  icons: PropTypes.array,
   getImageInfo: PropTypes.func,
   migoGreen: PropTypes.func,
   onHoverOn: PropTypes.func,
