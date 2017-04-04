@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Grid, Navbar } from 'react-bootstrap';
 
-const ReactNavbar = () => {
+const ReactNavbar = ({ toggle }) => {
   return (
     <header>
-      <Navbar inverse>
+      <Navbar inverse color="faded">
         <Grid>
           <Navbar.Header>
             <Navbar.Brand>
@@ -24,5 +24,9 @@ const ReactNavbar = () => {
     </header>
   );
 };
+
+ReactNavbar.propTypes = {
+  toggle: PropTypes.func
+}
 
 export default ReactNavbar;

@@ -1,4 +1,5 @@
 import React from 'react';
+
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // import ScrollListener from 'react-scroll-listener';
 
@@ -11,14 +12,45 @@ class HowItWorks extends React.Component {
       this.state = {
         active: null,
         hovering: false,
-        img: '/images/migo_app_1.png'
+        imgId: '',
+        screens: [{
+          img: '/images/screen1.png',
+          className: 'img-responsive step-images',
+          id: 'step1-img',
+          alt: 'Search for ride share options'
+        }, {
+          img: '/images/screen2.png',
+          className: 'img-responsive step-images',
+          id: 'step2-img',
+          alt: 'Compare and discover ride sharing options'
+        }, {
+          img: '/images/screen3.png',
+          className: 'img-responsive step-images',
+          id: 'step3-img',
+          alt: 'Hail the ride share service of your choice'
+        }, {
+          img: '/images/screen4.png',
+          className: 'img-responsive step-images',
+          id: 'step4-img',
+          alt: 'Travel to your destination'
+        }]
       }
 
+      this.getImageInfo = this.getImageInfo.bind(this);
       this.onHoverOn = this.onHoverOn.bind(this);
       this.onHoverOff = this.onHoverOff.bind(this);
       this.migoGreen = this.migoGreen.bind(this);
       this.toggle = this.toggle.bind(this);
    };
+
+   getImageInfo(event) {
+     this.setState({
+       imgId: event
+     })
+     if(this.state.imgId === 'step4-img') {
+       alert('image 4')
+     }
+   }
 
   onHoverOn(position){
     if(this.state.active === position || this.state.active !== position) {
@@ -54,9 +86,9 @@ class HowItWorks extends React.Component {
 
   toggle(position){
     if(this.state.active === position) {
-      this.setState({active : null, img: '/images/migo_app_3.png'})
+      this.setState({active : null })
     } else {
-      this.setState({active : position, img: '/images/migo_app_1.png'})
+      this.setState({active : position })
     }
   }
 
@@ -64,13 +96,18 @@ class HowItWorks extends React.Component {
     // setTimeout(function () {
     //   this.setState({bgId: newbgId});
     // }.bind(this), 7000);
+    // const screens = this.state.screens;
+
+
+
     return (
       <section id="how-animations">
         <HowAnimations
+          getImageInfo={this.getImageInfo}
           onHoverOn={this.onHoverOn}
           onHoverOff={this.onHoverOff}
-          img={this.state.img}
           migoGreen={this.migoGreen}
+          screens={this.state.screens}
           toggle={this.toggle}
         />
       </section>
