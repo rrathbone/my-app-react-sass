@@ -28,7 +28,7 @@ class Map extends React.Component {
 
     return (
       <section id="map-section" style={{height: "400px", width: "90%", margin: "auto", padding: "20px"}}>
-        <GoogleMapLoader
+        {this.props.mapLoaded ? <GoogleMapLoader
         containerElement={
           <div
             {...this.props.containerElementProps}
@@ -44,7 +44,7 @@ class Map extends React.Component {
             {markers}
           </GoogleMap>
         }
-      />
+      /> : <p>Looking for rides near you...</p>}
       </section>
     )
   }

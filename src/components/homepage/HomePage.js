@@ -1,5 +1,6 @@
 import React from 'react';
 import superagent from 'superagent'
+import { geolocated } from 'react-geolocated';
 
 import './styles/homepage.css';
 
@@ -10,7 +11,6 @@ import Contact from './contact/Contact';
 import FeaturesNews from './FeaturesNews';
 import HowItWorks from './how/HowItWorks';
 import Map from './map/Map';
-import Geolocation from './map/Geolocation';
 import Partners from './Partners';
 
 class HomePage extends React.Component {
@@ -18,12 +18,26 @@ class HomePage extends React.Component {
     super(props);
 
     this.state = {
+      lat: 0,
+      lng: 0,
+      mapLoaded: false,
       rides: [],
       venues: []
 		}
   }
 
-  componentDidMount(){
+  componentDidMount() {
+    setTimeout(function() {
+      let lat = this.props.coords.latitude
+      let lng = this.props.coords.longitude
+
+      this.setState({
+        lat: lat,
+        lng: lng,
+        mapLoaded: true
+      });
+    }.bind(this), 4000);
+
 		const migoUrl = 'http://dev.getmigo.com/mock/drivers?lat=47.6062&lng=-122.3321'
 
 		superagent
@@ -65,30 +79,47 @@ class HomePage extends React.Component {
 	}
 
   render() {
-    const location = {
-      lat: 47.598962,
-      lng: -122.333799
+    let location = {
+      lat: this.state.lat,
+      lng: this.state.lng
     }
 
     return (
       <section id="homepage">
-      <Banner />
-      <HowItWorks />
-        <CallToAction />
-      <Partners />
-      <Geolocation />
-      <Map
-        center={location}
-        rides={this.state.rides}
-        venues={this.state.venues}
-      />
-      <About />
-        <CallToAction />
-      <FeaturesNews />
-      <Contact />
+        <Banner />
+        <HowItWorks />
+          <CallToAction />
+        <Partners />
+        {!this.props.isGeolocationAvailable
+          ? <div>Your browser does not support HomePage</div>
+          : !this.props.isGeolocationEnabled
+            ? <div>HomePage is not enabled</div>
+            : this.props.coords
+              ? <table>
+                <tbody>
+                  <tr><td>latitude</td><td>Your current latitude {this.props.coords.latitude}</td></tr>
+                  <tr><td>longitude</td><td>Your current longitude {this.props.coords.longitude}</td></tr>
+                </tbody>
+              </table>
+              : <div>Getting the location data&hellip; </div>}
+        <Map
+          center={location}
+          mapLoaded={this.state.mapLoaded}
+          rides={this.state.rides}
+          venues={this.state.venues}
+        />
+        <About />
+          <CallToAction />
+        <FeaturesNews />
+        <Contact />
       </section>
     );
   }
 }
 
-export default HomePage;
+export default geolocated({
+  positionOptions: {
+    enableHighAccuracy: false,
+  },
+  userDecisionTimeout: 5000
+})(HomePage);
