@@ -1,5 +1,4 @@
 import React from 'react';
-// import axios from 'axios';
 import superagent from 'superagent'
 
 import './styles/homepage.css';
@@ -10,23 +9,22 @@ import CallToAction from './CallToAction';
 import Contact from './contact/Contact';
 import FeaturesNews from './FeaturesNews';
 import HowItWorks from './how/HowItWorks';
-import Map from './Map';
-// import Map2 from './Map2';
+import Map from './map/Map';
+import Geolocation from './map/Geolocation';
 import Partners from './Partners';
-// import Places from './Places';
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-			locations: [],
+      rides: [],
       venues: []
 		}
   }
 
   componentDidMount(){
-		const migoUrl = 'http://dev.getmigo.com/mock/drivers?lat=123&lng=123'
+		const migoUrl = 'http://dev.getmigo.com/mock/drivers?lat=47.6062&lng=-122.3321'
 
 		superagent
 		.get(migoUrl)
@@ -36,9 +34,17 @@ class HomePage extends React.Component {
 
 			const locations = res.body.nearby_drivers
 
+      let rides = [];
+
+      for(let i = 0; i < locations.length; i++) {
+        rides.push(locations[i].types[i].rides[i])
+      }
+
 			this.setState({
-				locations: locations
+				rides: rides
 			})
+
+      // console.log('rides', rides);
 
       const url = 'https://api.foursquare.com/v2/venues/search?v=20140806&ll=47.6062,-122.3321&client_id=VZZ1EUDOT0JYITGFDKVVMCLYHB3NURAYK3OHB5SK5N453NFD&client_secret=UAA15MIFIWVKZQRH22KPSYVWREIF2EMMH0GQ0ZKIQZC322NZ'
 
@@ -49,7 +55,7 @@ class HomePage extends React.Component {
   		.end((error, response) => {
 
       const venues = response.body.response.venues;
-  			// console.log(JSON.stringify(venues))
+      // console.log('venues', venues);
 
   			this.setState({
   				venues: venues
@@ -60,8 +66,8 @@ class HomePage extends React.Component {
 
   render() {
     const location = {
-      lat: 47.6062,
-      lng: -122.3321
+      lat: 47.598962,
+      lng: -122.333799
     }
 
     return (
@@ -70,8 +76,10 @@ class HomePage extends React.Component {
       <HowItWorks />
         <CallToAction />
       <Partners />
+      <Geolocation />
       <Map
         center={location}
+        rides={this.state.rides}
         venues={this.state.venues}
       />
       <About />

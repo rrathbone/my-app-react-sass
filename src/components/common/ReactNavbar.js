@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Grid, Navbar } from 'react-bootstrap';
 
-const ReactNavbar = ({ toggle }) => {
+const ReactNavbar = () => {
+// class ReactNavbar extends React.Component {
+// render() {
+
   return (
     <header>
       <Navbar inverse color="faded">
@@ -23,10 +26,15 @@ const ReactNavbar = ({ toggle }) => {
       </Navbar>
     </header>
   );
-};
+// }
+}
 
 ReactNavbar.propTypes = {
-  toggle: PropTypes.func
+  scrollToTop: PropTypes.func,
+  scrollToBottom: PropTypes.func,
+  scrollToTo: PropTypes.func,
+  scrollMore: PropTypes.func,
+  handleSetActive: PropTypes.func
 }
 
 export default ReactNavbar;

@@ -11,8 +11,8 @@ class HowItWorks extends React.Component {
 
       this.state = {
         active: null,
+        addClass1: false,
         hovering: false,
-        iconId: '',
         icons: [{
           className: 'fa fa-search',
           id: 'step-1-icon'
@@ -29,24 +29,33 @@ class HowItWorks extends React.Component {
         imgId: '',
         screens: [{
           img: '/images/screen1.png',
-          className: 'img-responsive step-images',
-          id: 'step1-img',
+          className: 'img-responsive step-images img-1',
+          img_id: 'step1-img',
           alt: 'Search for ride share options'
         }, {
           img: '/images/screen2.png',
-          className: 'img-responsive step-images',
-          id: 'step2-img',
+          className: 'img-responsive step-images img-2 hide',
+          img_id: 'step2-img',
           alt: 'Compare and discover ride sharing options'
         }, {
           img: '/images/screen3.png',
-          className: 'img-responsive step-images',
-          id: 'step3-img',
+          className: 'img-responsive step-images img-3 hide',
+          img_id: 'step3-img',
           alt: 'Hail the ride share service of your choice'
         }, {
           img: '/images/screen4.png',
-          className: 'img-responsive step-images',
-          id: 'step4-img',
+          className: 'img-responsive step-images img-4 hide',
+          img_id: 'step4-img',
           alt: 'Travel to your destination'
+        }],
+        steps: [{
+          id: 'step-1'
+        }, {
+          id: 'step-2'
+        }, {
+          id: 'step-3'
+        }, {
+          id: 'step-4'
         }]
       }
 
@@ -54,22 +63,42 @@ class HowItWorks extends React.Component {
       this.onHoverOn = this.onHoverOn.bind(this);
       this.onHoverOff = this.onHoverOff.bind(this);
       this.migoGreen = this.migoGreen.bind(this);
-      this.toggle = this.toggle.bind(this);
+      // this.toggle = this.toggle.bind(this);
    };
 
    getImageInfo(screenId) {
      this.setState({
-       imgId: screenId,
-       iconId: screenId
+       imgId: screenId
      })
 
-     console.log(this.state.imgId);
-    //  if(this.state.imgId === 'step4-img') {
-    //    console.log('image 4')
-    //  }
-   }
+    console.log(this.state.imgId);
 
-  onHoverOn(position){
+    if(this.state.imgId === 'step1-img') {
+      this.setState({
+        addClass1: true
+      })
+    }
+
+    if(this.state.imgId === 'step2-img') {
+      this.setState({
+        addClass2: true
+      })
+    }
+
+    if(this.state.imgId === 'step3-img') {
+      this.setState({
+        addClass3: true
+      })
+    }
+
+    if(this.state.imgId === 'step4-img') {
+      this.setState({
+        addClass4: true
+      })
+    }
+  }
+
+  onHoverOn(position) {
     if(this.state.active === position || this.state.active !== position) {
       this.setState({
         active : position
@@ -88,8 +117,8 @@ class HowItWorks extends React.Component {
       })
     }
 
-    if(this.props.hover){
-      this.setState({hovering: false});
+    if(this.props.hover) {
+      this.setState({ hovering: false });
     }
   }
 
@@ -101,13 +130,13 @@ class HowItWorks extends React.Component {
     return '';
   }
 
-  toggle(position){
-    if(this.state.active === position) {
-      this.setState({active : null })
-    } else {
-      this.setState({active : position })
-    }
-  }
+  // toggle(position){
+  //   if(this.state.active === position) {
+  //     this.setState({ active : null })
+  //   } else {
+  //     this.setState({ active : position })
+  //   }
+  // }
 
   render() {
     // setTimeout(function () {
@@ -118,13 +147,18 @@ class HowItWorks extends React.Component {
     return (
       <section id="how-animations">
         <HowAnimations
+          addClass1={this.state.addClass1}
+          addClass2={this.state.addClass2}
+          addClass3={this.state.addClass3}
+          addClass4={this.state.addClass4}
           getImageInfo={this.getImageInfo}
           icons={this.state.icons}
+          imgId={this.state.imgId}
+          migoGreen={this.migoGreen}
           onHoverOn={this.onHoverOn}
           onHoverOff={this.onHoverOff}
-          migoGreen={this.migoGreen}
           screens={this.state.screens}
-          toggle={this.toggle}
+          steps={this.state.steps}
         />
       </section>
     );

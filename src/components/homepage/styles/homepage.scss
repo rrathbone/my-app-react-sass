@@ -79,6 +79,10 @@ $header-font-size: 3em;
 		}
 	}
 
+	.step-images.hide-me {
+	  visibility: hidden;
+	}
+
 	.media-body {
 		padding-left: 2em;
 		width: 80%;

@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Grid } from 'react-bootstrap';
 
-
-const HowAnimations = ({ getImageInfo, icons, migoGreen, onHoverOn, onHoverOff, screens, toggle }) => {
+const HowAnimations = ({ addClass1, addClass2, addClass3, addClass4, getImageInfo, headers, icons, imgId, migoGreen, onHoverOn, onHoverOff, screens, steps }) => {
   return (
     <section id="how-it-works-section">
       <Grid>
@@ -24,17 +23,15 @@ const HowAnimations = ({ getImageInfo, icons, migoGreen, onHoverOn, onHoverOff, 
             <div className="row">
               <div className="col-sm-5" id="how-phone">
                 {screens.map((screen, index) => (
-                  <img className={screen.className} onClick={() => {getImageInfo(screen.id)}} key={index} id={screen.id} src={screen.img} alt={screen.alt}/>
+                  <img className={screen.className} key={index} id={screen.img_id} src={screen.img} alt={screen.alt}/>
                 ))}
               </div>
 
               <div className="col-sm-7" id="how-steps">
 
-                <div className="media service-box" id="step-1" onClick={() => {toggle(0)}} onMouseEnter={() => {onHoverOn(0)}} onMouseLeave={() => {onHoverOff(0)}}>
+                <div className="media service-box" id={steps[0].id} onClick={() => {getImageInfo(screens[0].img_id)}} onMouseEnter={() => {onHoverOn(0)}} onMouseLeave={() => {onHoverOff(0)}}>
                   <div className="pull-left">
-                    {icons.map((icon, index) => (
-                      <i className={icon.className} onClick={() => {getImageInfo(icon.id)}} key={index} id={icon.id} style={{background: migoGreen(0)}}></i>
-                    ))}
+                    <i className={icons[0].className} id={icons[0].id} style={{background: migoGreen(0)}}></i>
                   </div>
                   <div className="media-body how">
                     <h3 className="media-heading" id="step-1-header">Step 1: Search</h3>
@@ -42,9 +39,9 @@ const HowAnimations = ({ getImageInfo, icons, migoGreen, onHoverOn, onHoverOff, 
                   </div>
                 </div>
 
-                <div className="media service-box" id="step-2" onClick={() => {toggle(1)}} onMouseEnter={() => {onHoverOn(1)}} onMouseLeave={() => {onHoverOff(1)}}>
+                <div className="media service-box" id={steps[1].id} onClick={() => {getImageInfo(screens[1].img_id)}} onMouseEnter={() => {onHoverOn(1)}} onMouseLeave={() => {onHoverOff(1)}}>
                   <div className="pull-left">
-                    <i className="fa fa-map-marker" id="step-2-icon" style={{background: migoGreen(1)}}></i>
+                    <i className={icons[1].className} id={icons[1].id} style={{background: migoGreen(1)}}></i>
                   </div>
                   <div className="media-body">
                     <h3 className="media-heading" id="step-2-header">Step 2: Compare</h3>
@@ -52,9 +49,9 @@ const HowAnimations = ({ getImageInfo, icons, migoGreen, onHoverOn, onHoverOff, 
                   </div>
                 </div>
 
-                <div className="media service-box" id="step-3" onClick={() => {toggle(2)}} onMouseEnter={() => {onHoverOn(2)}} onMouseLeave={() => {onHoverOff(2)}}>
+                <div className="media service-box" id={steps[2].id} onClick={() => {getImageInfo(screens[2].img_id)}} onMouseEnter={() => {onHoverOn(2)}} onMouseLeave={() => {onHoverOff(2)}}>
                   <div className="pull-left">
-                    <i className="fa fa-hand-paper-o" id="step-3-icon" style={{background: migoGreen(2)}}></i>
+                    <i className={icons[2].className} id={icons[2].id} style={{background: migoGreen(2)}}></i>
                   </div>
                   <div className="media-body">
                     <h3 className="media-heading" id="step-3-header">Step 3: Hail</h3>
@@ -62,9 +59,9 @@ const HowAnimations = ({ getImageInfo, icons, migoGreen, onHoverOn, onHoverOff, 
                   </div>
                 </div>
 
-                <div className="media service-box" id="step-4"  onClick={() => {toggle(3)}} onMouseEnter={() => {onHoverOn(3)}} onMouseLeave={() => {onHoverOff(3)}}>
+                <div className="media service-box" id={steps[3].id} onClick={() => {getImageInfo(screens[3].img_id)}} onMouseEnter={() => {onHoverOn(3)}} onMouseLeave={() => {onHoverOff(3)}}>
                   <div className="pull-left">
-                    <i className="fa fa-taxi" id="step-4-icon" style={{background: migoGreen(3)}}></i>
+                    <i className={icons[3].className} id={icons[3].id} style={{background: migoGreen(3)}}></i>
                   </div>
                   <div className="media-body">
                     <h3 className="media-heading" id="step-4-header">Step 4: Go!</h3>
@@ -82,13 +79,19 @@ const HowAnimations = ({ getImageInfo, icons, migoGreen, onHoverOn, onHoverOff, 
 };
 
 HowAnimations.propTypes = {
+  addClass1: PropTypes.bool,
+  addClass2: PropTypes.bool,
+  addClass3: PropTypes.bool,
+  addClass4: PropTypes.bool,
+  headers: PropTypes.array,
   icons: PropTypes.array,
+  imgId: PropTypes.string,
   getImageInfo: PropTypes.func,
   migoGreen: PropTypes.func,
   onHoverOn: PropTypes.func,
   onHoverOff: PropTypes.func,
   screens: PropTypes.array,
-  toggle: PropTypes.func
+  steps: PropTypes.array
 }
 
 export default HowAnimations;
