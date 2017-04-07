@@ -97,8 +97,8 @@ class HomePage extends React.Component {
             : this.props.coords
               ? <table>
                 <tbody>
-                  <tr><td>latitude</td><td>Your current latitude {this.props.coords.latitude}</td></tr>
-                  <tr><td>longitude</td><td>Your current longitude {this.props.coords.longitude}</td></tr>
+                  <tr><td>Your current latitude: {this.props.coords.latitude}</td></tr>
+                  <tr><td>Your current longitude: {this.props.coords.longitude}</td></tr>
                 </tbody>
               </table>
               : <div>Getting the location data&hellip; </div>}

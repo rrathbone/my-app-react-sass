@@ -1,7 +1,7 @@
 @import "../../app.scss";
 
 $base-path: '/images/';
-$file-name: 'migo_banner';
+$file-name: 'migo_banner_mini';
 $extension: 'jpg';
 $file-path: $base-path + $file-name + '.' + $extension;
 
@@ -348,16 +348,20 @@ $header-font-size: 3em;
 	right: 0;
 }
 
-.fa-mobile-phone:before, .fa-mobile:before, .fa-users:before, .fa-map-marker:before,
-.fa-handshake-o:before, .fa-newspaper-o:before, .fa-question-circle-o, .fa-search,
-.fa-hand-paper-o:before, .fa-taxi:before {
-  color: $migo-blue;
-  font-size: 1.3em;
+.fa-mobile-phone, .fa-mobile, .fa-users, .fa-map-marker,
+.fa-handshake-o, .fa-newspaper-o, .fa-question-circle-o, .fa-search,
+.fa-hand-paper-o, .fa-taxi {
+	&:before {
+		color: $migo-blue;
+		font-size: 1.3em;
+	}
 }
 
-.fa-mobile-phone:before, .fa-mobile:before {
-  color: $migo-blue;
-  font-size: 1.5em;
+.fa-mobile-phone, .fa-mobile {
+	&:before {
+		color: $migo-blue;
+		font-size: 1.5em;
+	}
 }
 
 .media.service-box .pull-left > i, .media.service-box .pull-left > .icons > i {

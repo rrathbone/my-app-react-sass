@@ -1,6 +1,6 @@
 import React from 'react';
-
 import ReactNavbar from './common/ReactNavbar';
+
 import HomePage from './homepage/HomePage';
 import Footer from './common/Footer';
 
