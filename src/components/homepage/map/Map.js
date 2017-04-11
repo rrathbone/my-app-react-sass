@@ -1,21 +1,43 @@
 import React from 'react';
 import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
+// import Loader from 'halogen/DotLoader';
+
+import Loader from './Loader';
 
 class Map extends React.Component {
   render() {
-    const markers = this.props.rides.map((ride, i) => {
+    let lat;
+    let lng;
 
-		const marker = {
-			position: {
-				lat: ride.lat,
-				lng: ride.lng
-			}
-		}
+    if(this.props.lat !== undefined) {
+      lat = this.props.lat;
+      lng = this.props.lng;
+    }
 
-		return <Marker key={i} {...marker} />
-	})
-  //   const markers = this.props.venues.map((venue, i) => {
-  //
+    let rides = this.props.rides
+    let newRides;
+
+    for(let i = 0; i < rides.length; i++) {
+      newRides = rides[i]
+    }
+
+    let markers;
+
+    if(newRides) {
+      markers = newRides.map((ride, i) => {
+    		const marker = {
+    			position: {
+    				lat: ride.lat,
+    				lng: ride.lng
+    			}
+    		}
+
+    		return <Marker key={i} {...marker} />
+      })
+    }
+    // console.log('ride MARKERS', markers);
+
+  //  const markers = this.props.venues.map((venue, i) => {
 	// 	const marker = {
 	// 		position: {
 	// 			lat: venue.location.lat,
@@ -23,12 +45,16 @@ class Map extends React.Component {
 	// 		}
 	// 	}
   //
+  //
+  //   // console.log('VENUE MARKER', marker.position);
+  //   // console.log('individual markers', {...marker});
 	// 	return <Marker key={i} {...marker} />
 	// })
+  // console.log('VENUE MARKERS', markers);
 
     return (
-      <section id="map-section" style={{height: "400px", width: "90%", margin: "auto", padding: "20px"}}>
-        {this.props.mapLoaded ? <GoogleMapLoader
+      <section id="map-section">
+        {lat && lng  ? <GoogleMapLoader
         containerElement={
           <div
             {...this.props.containerElementProps}
@@ -40,11 +66,11 @@ class Map extends React.Component {
         googleMapElement={
           <GoogleMap
             defaultZoom={14}
-            defaultCenter={this.props.center}>
+            defaultCenter={{lat: lat, lng: lng}}>
             {markers}
           </GoogleMap>
         }
-      /> : <p>Looking for rides near you...</p>}
+      /> : <Loader />}
       </section>
     )
   }

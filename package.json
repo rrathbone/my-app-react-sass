@@ -6,6 +6,7 @@
     "axios": "^0.15.3",
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
+    "halogen": "^0.2.0",
     "install": "^0.8.8",
     "npm": "^4.4.4",
     "react": "^15.4.2",

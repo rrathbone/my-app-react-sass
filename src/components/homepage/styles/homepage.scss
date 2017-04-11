@@ -174,6 +174,93 @@ $header-font-size: 3em;
 	}
 }
 
+/*---------- Map section ----------*/
+#map-section, #loader-section {
+	height: 400px;
+	width: 90%;
+	margin: auto;
+	padding: 20px
+}
+
+#loading-header {
+	text-align: center;
+	font-weight: normal;
+	color: $migo-green;
+	font-size: 2rem;
+	padding-top: 4em;
+}
+
+.Loader {
+	text-align: center;
+}
+
+.Loader-indicator.fade-enter,
+.Loader-content.fade-enter {
+  opacity: 0;
+}
+
+.Loader-indicator.fade-enter-active,
+.Loader-content.fade-enter-active {
+  opacity: 1;
+}
+
+.Loader-indicator.fade-leave,
+.Loader-content.fade-leave {
+  opacity: 1;
+}
+
+.Loader-indicator.fade-leave-active,
+.Loader-content.fade-leave-active {
+  opacity: 0;
+}
+
+.Loader-content,
+.Loader-indicator {
+  transition: opacity 1s;
+}
+
+.Loader-car {
+  padding: 0 10px 0 10px;
+  opacity: 0;
+  animation-duration: 3000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+	color: $migo-green;
+}
+
+@keyframes Loader-car1 {
+  0%   { opacity: 0; }
+  25%  { opacity: 0; }
+  35%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes Loader-car2 {
+  0%   { opacity: 0; }
+  50%  { opacity: 0; }
+  60%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes Loader-car3 {
+  0%   { opacity: 0; }
+  75%  { opacity: 0; }
+  85%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+.Loader-car:nth-child(1) {
+  animation-name: Loader-car1;
+}
+
+.Loader-car:nth-child(2) {
+  animation-name: Loader-car2;
+}
+
+.Loader-car:nth-child(3) {
+  animation-name: Loader-car3;
+}
+
 /*---------- About section ----------*/
 #about-padding {
 	padding: $section-padding;

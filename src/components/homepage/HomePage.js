@@ -36,9 +36,9 @@ class HomePage extends React.Component {
         lng: lng,
         mapLoaded: true
       });
-    }.bind(this), 4000);
+    }.bind(this), 5000);
 
-		const migoUrl = 'http://dev.getmigo.com/mock/drivers?lat=47.6062&lng=-122.3321'
+		const migoUrl = 'http://dev.getmigo.com/api/providers/drivers?lat=47.608013&lng=-122.335167'
 
 		superagent
 		.get(migoUrl)
@@ -49,61 +49,44 @@ class HomePage extends React.Component {
 			const locations = res.body.nearby_drivers
 
       let rides = [];
+      let rideMarkers = [];
 
       for(let i = 0; i < locations.length; i++) {
-        rides.push(locations[i].types[i].rides[i])
+        rides.push(locations[i].types[i].rides)
+        rideMarkers.push(rides[i])
       }
 
 			this.setState({
-				rides: rides
+				rides: rideMarkers
 			})
 
-      // console.log('rides', rides);
-
-      const url = 'https://api.foursquare.com/v2/venues/search?v=20140806&ll=47.6062,-122.3321&client_id=VZZ1EUDOT0JYITGFDKVVMCLYHB3NURAYK3OHB5SK5N453NFD&client_secret=UAA15MIFIWVKZQRH22KPSYVWREIF2EMMH0GQ0ZKIQZC322NZ'
-
-  		superagent
-  		.get(url)
-  		.query(null)
-  		.set('Accept', 'text/json')
-  		.end((error, response) => {
-
-      const venues = response.body.response.venues;
-      // console.log('venues', venues);
-
-  			this.setState({
-  				venues: venues
-  			})
-  		})
+      // const url = 'https://api.foursquare.com/v2/venues/search?v=20140806&ll=47.6062,-122.3321&client_id=VZZ1EUDOT0JYITGFDKVVMCLYHB3NURAYK3OHB5SK5N453NFD&client_secret=UAA15MIFIWVKZQRH22KPSYVWREIF2EMMH0GQ0ZKIQZC322NZ'
+      //
+  		// superagent
+  		// .get(url)
+  		// .query(null)
+  		// .set('Accept', 'text/json')
+  		// .end((error, response) => {
+      //
+      // const venues = response.body.response.venues;
+      //
+  		// 	this.setState({
+  		// 		venues: venues
+  		// 	})
+  		// })
 		})
 	}
 
   render() {
-    let location = {
-      lat: this.state.lat,
-      lng: this.state.lng
-    }
-
     return (
       <section id="homepage">
         <Banner />
         <HowItWorks />
           <CallToAction />
         <Partners />
-        {!this.props.isGeolocationAvailable
-          ? <div>Your browser does not support HomePage</div>
-          : !this.props.isGeolocationEnabled
-            ? <div>HomePage is not enabled</div>
-            : this.props.coords
-              ? <table>
-                <tbody>
-                  <tr><td>Your current latitude: {this.props.coords.latitude}</td></tr>
-                  <tr><td>Your current longitude: {this.props.coords.longitude}</td></tr>
-                </tbody>
-              </table>
-              : <div>Getting the location data&hellip; </div>}
         <Map
-          center={location}
+          lat={this.state.lat}
+          lng={this.state.lng}
           mapLoaded={this.state.mapLoaded}
           rides={this.state.rides}
           venues={this.state.venues}
@@ -123,3 +106,16 @@ export default geolocated({
   },
   userDecisionTimeout: 5000
 })(HomePage);
+
+// {!this.props.isGeolocationAvailable
+//   ? <div>Your browser does not support HomePage</div>
+//   : !this.props.isGeolocationEnabled
+//     ? <div>HomePage is not enabled</div>
+//     : this.props.coords
+//       ? <table>
+//         <tbody>
+//           <tr><td>Your current latitude: {this.props.coords.latitude}</td></tr>
+//           <tr><td>Your current longitude: {this.props.coords.longitude}</td></tr>
+//         </tbody>
+//       </table>
+//       : <div>Getting the location data&hellip; </div>}
