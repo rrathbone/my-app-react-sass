@@ -38,19 +38,20 @@ class HomePage extends React.Component {
       });
     }.bind(this), 5000);
 
-		const migoUrl = 'http://dev.getmigo.com/api/providers/drivers?lat=47.608013&lng=-122.335167'
+		const migoUrl = 'http://dev.getmigo.com/api/drivers?lat=47.608013&lng=-122.335167'
 
 		superagent
 		.get(migoUrl)
 		.query(null)
 		.set('Accept', 'text/json')
 		.end((err, res) => {
-
+      console.log(res.body);
 			const locations = res.body.nearby_drivers
 
       let rides = [];
       let rideMarkers = [];
 
+      console.log(res.body.nearby_drivers);
       for(let i = 0; i < locations.length; i++) {
         rides.push(locations[i].types[i].rides)
         rideMarkers.push(rides[i])
